@@ -8,11 +8,11 @@ winOptions = {
 	resizable: true,
 	vsync: true
 }
-WINDOW_WIDTH = 640
-WINDOW_HEIGHT = 360
+export WINDOW_WIDTH = 640
+export WINDOW_HEIGHT = 360
 
-VIRTUAL_WIDTH = 432
-VIRTUAL_HEIGHT = 243
+export VIRTUAL_WIDTH = 432
+export VIRTUAL_HEIGHT = 243
 
 love.load = () ->
   love.window.setTitle "Move"
