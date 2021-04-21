@@ -191,14 +191,16 @@ tilemanager.draw = function(self)
 end
 
 tilemanager.init = function(self, tiledFilePath)
-  local data  = require(tiledFilePath);
-  local lg = love.graphics;
-  self.width = data.width;
-  self.height = data.height;
-  self.tilewidth = data.tilewidth;
-  self.tileheight = data.tileheight;
-  local Tdata = data;
-  self:initAll(Tdata, lg);
+  if tiledFilePath then
+    local data  = require(tiledFilePath);
+    local lg = love.graphics;
+    self.width = data.width;
+    self.height = data.height;
+    self.tilewidth = data.tilewidth;
+    self.tileheight = data.tileheight;
+    local Tdata = data;
+    self:initAll(Tdata, lg);
+  end
 end
 
 return tilemanager;
