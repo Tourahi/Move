@@ -1,6 +1,9 @@
 import min from math
 import max from math
 
+Keyboard = love.keyboard
+Graphics = love.graphics
+
 class Player
 
   new: (x, y, w, h, color) =>
@@ -13,23 +16,25 @@ class Player
     @speed = 100
     @dx = @speed
     @dy = @speed
+    @sprite = Graphics.newImage("sprites/player.png")
 
 
   draw: () =>
-    love.graphics.setColor unpack @color, 1
-    love.graphics.rectangle @drawType, @x, @y, @w, @h
+    -- Graphics.setColor unpack @color, 1
+    --Graphics.rectangle @drawType, @x, @y, @w, @h
+    Graphics.draw @sprite, @x, @y
 
   mouvement: (dt) =>
-    if love.keyboard.isDown 'z'
+    if Keyboard.isDown 'z'
       @dy = -@speed
       @dx = 0
-    else if love.keyboard.isDown 's'
+    else if Keyboard.isDown 's'
       @dy = @speed
       @dx = 0
-    else if love.keyboard.isDown 'd'
+    else if Keyboard.isDown 'd'
       @dx = @speed
       @dy = 0
-    else if love.keyboard.isDown 'q'
+    else if Keyboard.isDown 'q'
       @dx = -@speed
       @dy = 0
 

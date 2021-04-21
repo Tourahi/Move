@@ -14,14 +14,16 @@ export WINDOW_HEIGHT = 360
 export VIRTUAL_WIDTH = 432
 export VIRTUAL_HEIGHT = 243
 
-love.load = () ->
-  love.window.setTitle "Move"
-  -- love.graphics.setDefaultFilter 'nearest', 'nearest'
-  push.setupScreen(push, VIRTUAL_WIDTH, VIRTUAL_HEIGHT,WINDOW_WIDTH, WINDOW_HEIGHT, winOptions)
-love.update = (dt) ->
-  player\update(dt)
 
-love.draw = () ->
-  push.apply(push, 'start')
-  player\draw!
-  push.apply(push, 'end')
+with love
+  .load = () ->
+    love.window.setTitle "Move"
+    love.graphics.setDefaultFilter 'nearest', 'nearest'
+    push.setupScreen(push, VIRTUAL_WIDTH, VIRTUAL_HEIGHT,WINDOW_WIDTH, WINDOW_HEIGHT, winOptions)
+  .update = (dt) ->
+    player\update dt
+
+  .draw = () ->
+    push.apply push, 'start'
+    player\draw!
+    push.apply push, 'end'
