@@ -1,11 +1,11 @@
 Player = assert require "player"
-push = assert require "libs.push"
+export push = assert require "libs.push"
 tilemanager = assert require "libs.tilemanager"
 export Binocles = assert require "libs.Binocles"
 
 
 
-player = Player(10,10,10,10,{1,0.5,1})
+player = Player(10,10,20,20,{1,0.5,1})
 tileM = tilemanager!
 
 
@@ -20,6 +20,7 @@ export WINDOW_HEIGHT = 360
 export VIRTUAL_WIDTH = 432
 export VIRTUAL_HEIGHT = 243
 
+export DEBUG = false
 
 with love
   .load = () ->

@@ -13,7 +13,7 @@ class Player
     @h = h
     @color = color
     @drawType = "line"
-    @speed = 100
+    @speed = 90
     @dx = @speed
     @dy = @speed
     @sprite = Graphics.newImage("sprites/player.png")
@@ -22,7 +22,7 @@ class Player
   draw: () =>
     -- Graphics.setColor unpack @color, 1
     --Graphics.rectangle @drawType, @x, @y, @w, @h
-    Graphics.draw @sprite, @x, @y
+    Graphics.draw @sprite, @x, @y, nil, nil, nil, 0, 0
 
   mouvement: (dt) =>
     if Keyboard.isDown 'z'
@@ -37,15 +37,18 @@ class Player
     else if Keyboard.isDown 'q'
       @dx = -@speed
       @dy = 0
+    else if Keyboard.isDown 'space'
+      @dx = 0
+      @dy = 0
 
 
   update: (dt) =>
     @mouvement dt
     if @dy < 0
-      @y = max 0, @y + @dy * dt
+      @y = max 0, @y + (@dy * dt)
     elseif @dy > 0
-      @y = min VIRTUAL_HEIGHT - @h,  @y + @dy * dt
+      @y = min VIRTUAL_HEIGHT - @h,  @y + (@dy * dt)
     elseif @dx < 0
-      @x = max 0, @x + @dx * dt
+      @x = max 0, @x + (@dx * dt)
     elseif @dx > 0
-      @x = min VIRTUAL_WIDTH - @w, @x + @dx * dt
+      @x = min VIRTUAL_WIDTH - @w, @x + (@dx * dt)
