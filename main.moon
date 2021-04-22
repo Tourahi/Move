@@ -5,8 +5,8 @@ export Binocles = assert require "libs.Binocles"
 
 
 
-player = Player(10,10,20,20,{1,0.5,1})
-tileM = tilemanager!
+player = Player(10,10,10,10,{1,0.5,1})
+tileM = tilemanager "maps.level1"
 
 
 winOptions = {
@@ -25,7 +25,7 @@ export DEBUG = false
 with love
   .load = () ->
     Binocles!
-    Binocles\watch "FPS",() -> love.timer.getFPS!
+    Binocles\watch "FPS",-> love.timer.getFPS!
     love.window.setTitle "Move"
     love.graphics.setDefaultFilter 'nearest', 'nearest'
     push\setupScreen VIRTUAL_WIDTH, VIRTUAL_HEIGHT,WINDOW_WIDTH, WINDOW_HEIGHT, winOptions
@@ -35,7 +35,8 @@ with love
     Binocles\update dt
 
   .draw = () ->
-    Binocles\draw!
     push\apply 'start'
+    tileM\draw!
     player\draw!
     push\apply 'end'
+    Binocles\draw!
