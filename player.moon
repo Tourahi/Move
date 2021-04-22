@@ -15,8 +15,8 @@ class Player
     @color = color
     @drawType = "line"
     @speed = 90
-    @dx = @speed
-    @dy = @speed
+    @dx = 0
+    @dy = 0
     @sprite = Graphics.newImage("sprites/player.png")
 
 
@@ -41,6 +41,10 @@ class Player
     else if Keyboard.isDown 'space'
       @dx = 0
       @dy = 0
+
+  setPos: (x,y) =>
+    @x,@y = x,y
+
 
 
   update: (dt, lvl) =>
