@@ -1,13 +1,14 @@
 Player = assert require "player"
 export push = assert require "libs.push"
-tilemanager = assert require "libs.tilemanager"
-export Binocles = assert require "libs.Binocles"
+tileManager = assert require "libs.tilemanager"
+levelManager = assert require "levelManager"
+export B = assert require "libs.Binocles"
 
 
 
 player = Player(10,10,10,10,{1,0.5,1})
-tileM = tilemanager "maps.level1"
-
+tileM = tileManager "maps.level1"
+lvlM = levelManager tileM, player, "maps"
 
 winOptions = {
 	fullscreen: false,
@@ -24,19 +25,18 @@ export DEBUG = false
 
 with love
   .load = () ->
-    Binocles!
-    Binocles\watch "FPS",-> love.timer.getFPS!
+    B!
+    B\watch "FPS",-> love.timer.getFPS!
+    B\watch "NumOfObject",-> #tileM.objects
     love.window.setTitle "Move"
     love.graphics.setDefaultFilter 'nearest', 'nearest'
     push\setupScreen VIRTUAL_WIDTH, VIRTUAL_HEIGHT,WINDOW_WIDTH, WINDOW_HEIGHT, winOptions
 
   .update = (dt) ->
-    player\update dt
-    Binocles\update dt
+    lvlM\update dt
+    B\update dt
 
   .draw = () ->
-    push\apply 'start'
-    tileM\draw!
-    player\draw!
-    push\apply 'end'
-    Binocles\draw!
+    lvlM\draw!
+    B\draw!
+
