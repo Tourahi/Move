@@ -11,12 +11,12 @@ class Box
 
 
   axisOverlap: (min1, min2, max1, max2) =>
-    (min1 < min2 and max1 > max2)
+    (min1 < max2 and max1 > min2)
 
   -- o : the other box
   overlaps: (o) =>
-    xAxisO = @axisOverlap @x, o.x, @x+@w, o.x+o.w
-    yAxisO = @axisOverlap @y, o.y, @y+@h, o.y+o.h
+    xAxisO = @axisOverlap @x,o.x ,@x+@w ,o.x+o.w
+    yAxisO = @axisOverlap @y,o.y, @y+@h, o.y+o.h
     (xAxisO and yAxisO)
 
   update: (x, y) =>

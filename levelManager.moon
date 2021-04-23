@@ -1,6 +1,8 @@
 import min from math
 import max from math
 
+Entity = assert require "entity"
+Box = assert require "box"
 
 class LevelManager
   new: (tm, p, lvlsPath) =>
@@ -11,12 +13,17 @@ class LevelManager
     @entities = {}
     @currentLevel = 1
     @initObjects!
+    @testEnt = Entity "test", nil, 100, 100,
+      nil, nil, nil,
+      Box 120, 120, 10, 10
 
   draw: () =>
     push\apply 'start'
     @tileM\draw!
+    @testEnt\draw!
     @player\draw!
     push\apply 'end'
+
 
   initObjects: () =>
     objs = @tileM.objects
@@ -26,6 +33,8 @@ class LevelManager
 
   update: (dt) =>
     @player\update dt, self
+    @testEnt\collisionCheck @player.cBox, self
+
 
   isTileWalkable: (x, y) =>
     return @tileM\isTileWalkable x, y
