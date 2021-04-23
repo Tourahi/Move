@@ -28,8 +28,9 @@ class LevelManager
     @player\update dt, self
 
   isTileWalkable: (x, y) =>
-    if x < 0 or y < 0
-      return false
     return @tileM\isTileWalkable x, y
+
+  resize: (w,h) =>
+    push\resize(w, h)
 
 

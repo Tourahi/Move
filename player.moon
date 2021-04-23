@@ -1,6 +1,7 @@
 import min from math
 import max from math
 import floor from math
+import abs from math
 
 Keyboard = love.keyboard
 Graphics = love.graphics
@@ -18,6 +19,11 @@ class Player
     @dx = 0
     @dy = 0
     @sprite = Graphics.newImage("sprites/player.png")
+    @rBound = VIRTUAL_WIDTH + @w
+    @lBound = -@w
+    @tBound = -@h
+    @bBound = VIRTUAL_HEIGHT + @h
+
 
 
   draw: () =>
@@ -51,16 +57,28 @@ class Player
     @mouvement dt
     x,y = @x, @y
     if @dy < 0
-      y = max 0, @y + (@dy * @speed * dt)
+      y = max @h*@dy, @y + (@dy * @speed * dt)
     elseif @dy > 0
-      y = min VIRTUAL_HEIGHT - @h,  @y + (@dy * @speed * dt)
+      y = min VIRTUAL_HEIGHT + @h,  @y + (@dy * @speed * dt)
     elseif @dx < 0
-      x = max 0, @x + (@dx * @speed * dt)
+      x = max @w*@dx, @x + (@dx * @speed * dt)
     elseif @dx > 0
-      x = min VIRTUAL_WIDTH - @w, @x + (@dx * @speed * dt)
+      x = min VIRTUAL_WIDTH + @w, @x + (@dx * @speed * dt)
 
     B\watch "Player Pos",-> {x: floor(@x),y: floor(@y)}
-    if lvl\isTileWalkable x+@w/2,y+@h/2
+    B\watch "Player Dir",-> {dx: @dx,dy: @dy}
+    if lvl\isTileWalkable x + (@h/2 + (@dx*@h/3)),y + (@w/2 + (@dy*@w/3))
       @x = x
       @y = y
+      if @dx != 0
+        if @dx > 0 and @x == @rBound
+          @x = @lBound
+        elseif @dx < 0 and @x == @lBound
+          @x = @rBound
+      elseif @dy != 0
+        if @dy > 0 and @y == @bBound
+          @y = @tBound
+        elseif @dy < 0 and @y == @tBound
+          @y = @bBound
+
 

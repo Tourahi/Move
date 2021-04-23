@@ -1,3 +1,9 @@
+export WINDOW_WIDTH = 640
+export WINDOW_HEIGHT = 360
+
+export VIRTUAL_WIDTH = 432
+export VIRTUAL_HEIGHT = 243
+
 Player = assert require "player"
 export push = assert require "libs.push"
 tileManager = assert require "libs.tilemanager"
@@ -15,11 +21,7 @@ winOptions = {
 	resizable: true,
 	vsync: true
 }
-export WINDOW_WIDTH = 640
-export WINDOW_HEIGHT = 360
 
-export VIRTUAL_WIDTH = 432
-export VIRTUAL_HEIGHT = 243
 
 export DEBUG = false
 
@@ -40,3 +42,5 @@ with love
     lvlM\draw!
     B\draw!
 
+  .resize = (w,h) ->
+    lvlM\resize(w, h)
