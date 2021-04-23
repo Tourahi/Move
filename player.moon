@@ -3,6 +3,7 @@ import max from math
 import floor from math
 import abs from math
 
+Box = assert require "box"
 Keyboard = love.keyboard
 Graphics = love.graphics
 
@@ -23,12 +24,12 @@ class Player
     @lBound = -@w
     @tBound = -@h
     @bBound = VIRTUAL_HEIGHT + @h
-
+    @cBox = Box @x, @y, @w, @h
 
 
   draw: () =>
-    -- Graphics.setColor unpack @color, 1
-    --Graphics.rectangle @drawType, @x, @y, @w, @h
+    Graphics.setColor 1, 1, 1, 1
+    Graphics.rectangle @drawType, @cBox.x, @cBox.y, @cBox.w, @cBox.h
     Graphics.draw @sprite, @x, @y, nil, nil, nil, 0, 0
 
   mouvement: (dt) =>
@@ -80,5 +81,6 @@ class Player
           @y = @tBound
         elseif @dy < 0 and @y == @tBound
           @y = @bBound
+    @cBox\update @x, @y
 
 
