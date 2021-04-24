@@ -8,6 +8,7 @@ Player = assert require "player"
 export push = assert require "libs.push"
 tileManager = assert require "libs.tilemanager"
 levelManager = assert require "levelManager"
+gameStates = assert require "gameState.gamestates"
 export B = assert require "libs.Binocles"
 
 
