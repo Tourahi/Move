@@ -1,6 +1,5 @@
 import min from math
 import max from math
-
 Entity = assert require "entity"
 Box = assert require "box"
 
@@ -18,11 +17,11 @@ class LevelManager
       Box 120, 120, 10, 10
 
   draw: () =>
-    push\apply 'start'
+    Push\apply 'start'
     @tileM\draw!
     @testEnt\draw!
     @player\draw!
-    push\apply 'end'
+    Push\apply 'end'
 
 
   initObjects: () =>
@@ -30,6 +29,7 @@ class LevelManager
     for k,o in pairs objs
       @objects[o.name] = o
     @player\setPos @objects["player"].x, @objects["player"].y
+    B\watch "NumOfTiledObjects",-> #@tileM.objects
 
   update: (dt) =>
     @player\update dt, self
@@ -40,6 +40,6 @@ class LevelManager
     return @tileM\isTileWalkable x, y
 
   resize: (w,h) =>
-    push\resize(w, h)
+    Push\resize(w, h)
 
 

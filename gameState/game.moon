@@ -7,10 +7,11 @@ export VIRTUAL_WIDTH = 432
 export VIRTUAL_HEIGHT = 243
 
 Player = assert require "player"
-export push = assert require "libs.push"
+export Push = assert require "libs.push"
 tileManager = assert require "libs.tilemanager"
 levelManager = assert require "levelManager"
 gameStates = assert require "gameState.gamestates"
+playerMv = assert require "ai.playerKeyboardMv"
 export B = assert require "libs.Binocles"
 
 winOptions = {
@@ -19,34 +20,32 @@ winOptions = {
 	vsync: false
 }
 
-player = Player(10,10,10,10,{1,0.5,1})
-tileM = tileManager "maps.level1"
-lvlM = levelManager tileM, player, "maps"
 
 with game
 
-  .enter = (prevS, ...) =>
-    return
+  .enter = (prevS, ...) ->
+    player = Player(10,10,10,10,playerMv)
+    tileM = tileManager "maps.level1"
+    game.lvlM = levelManager tileM, player, "maps"
 
   .load = () ->
     B!
     B\setPosition 20,1
     B\watch "FPS",-> love.timer.getFPS!
-    B\watch "NumOfTiledObjects",-> #tileM.objects
     love.window.setTitle "Move"
     love.graphics.setDefaultFilter 'nearest', 'nearest'
-    push\setupScreen VIRTUAL_WIDTH, VIRTUAL_HEIGHT,WINDOW_WIDTH, WINDOW_HEIGHT, winOptions
+    Push\setupScreen VIRTUAL_WIDTH, VIRTUAL_HEIGHT,WINDOW_WIDTH, WINDOW_HEIGHT, winOptions
 
   .update = (dt) ->
-    lvlM\update dt
+    game.lvlM\update dt
     B\update dt
 
   .draw = () ->
-    lvlM\draw!
+    game.lvlM\draw!
     B\draw!
 
   .resize = (w,h) ->
-    lvlM\resize(w, h)
+    game.lvlM\resize(w, h)
 
   .keypressed = (key) ->
     B\keypressed key

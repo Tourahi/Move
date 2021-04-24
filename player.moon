@@ -4,19 +4,19 @@ import floor from math
 import abs from math
 
 Box = assert require "box"
-Keyboard = love.keyboard
 Graphics = love.graphics
 
 class Player
 
-  new: (x, y, w, h, color) =>
+  new: (x, y, w, h, mouvement) =>
     @x = x
     @y = y
     @w = w
     @h = h
-    @color = color
     @drawType = "line"
     @speed = 90
+    @mouvement = mouvement
+    @mouvement\setCtrls 'up','down','left','right'
     @dx = 0
     @dy = 0
     @sprite = Graphics.newImage("sprites/player.png")
@@ -28,44 +28,14 @@ class Player
 
 
   draw: () =>
-    Graphics.setColor 1, 1, 1, 1
     Graphics.rectangle @drawType, @cBox.x, @cBox.y, @cBox.w, @cBox.h
     Graphics.draw @sprite, @x, @y, nil, nil, nil, 0, 0
-
-  mouvement: (dt) =>
-    if Keyboard.isDown 'z'
-      @dy = -1
-      @dx = 0
-    else if Keyboard.isDown 's'
-      @dy = 1
-      @dx = 0
-    else if Keyboard.isDown 'd'
-      @dx = 1
-      @dy = 0
-    else if Keyboard.isDown 'q'
-      @dx = -1
-      @dy = 0
-    else if Keyboard.isDown 'space'
-      @dx = 0
-      @dy = 0
 
   setPos: (x,y) =>
     @x,@y = x,y
 
-
-
   update: (dt, lvl) =>
-    @mouvement dt
-    x,y = @x, @y
-    if @dy < 0
-      y = max @h*@dy, @y + (@dy * @speed * dt)
-    elseif @dy > 0
-      y = min VIRTUAL_HEIGHT + @h,  @y + (@dy * @speed * dt)
-    elseif @dx < 0
-      x = max @w*@dx, @x + (@dx * @speed * dt)
-    elseif @dx > 0
-      x = min VIRTUAL_WIDTH + @w, @x + (@dx * @speed * dt)
-
+    x,y = @mouvement.update self, dt
     B\watch "Player Pos",-> {x: floor(@x),y: floor(@y)}
     B\watch "Player Dir",-> {dx: @dx,dy: @dy}
     if lvl\isTileWalkable x + (@h/2 + (@dx*@h/3)),y + (@w/2 + (@dy*@w/3))
