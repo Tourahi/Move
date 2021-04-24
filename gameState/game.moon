@@ -11,7 +11,7 @@ export Push = assert require "libs.push"
 tileManager = assert require "libs.tilemanager"
 levelManager = assert require "levelManager"
 gameStates = assert require "gameState.gamestates"
-playerMv = assert require "ai.playerKeyboardMv"
+export playerMv = assert require "ai.playerKeyboardMv"
 export B = assert require "libs.Binocles"
 
 winOptions = {

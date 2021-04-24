@@ -6,11 +6,16 @@ class Entity
     @cBox = cBox
     @x = x
     @y = y
+    @w = cBox.w
+    @h = cBox.h
+    @dx = 0
+    @dy = 0
     @speed = speed
     @mouvement = mouvement
     @collision = collision
     @visible = true
     @dead = false
+    @timer = nil
 
 
   draw: () =>
@@ -19,7 +24,7 @@ class Entity
 
   update: (dt) =>
     if @mouvement
-      @mouvement\update! --TODO
+      @x,@y = @mouvement.update self, dt
     if @cBox
       @cBox\update @x,@y
 
@@ -30,6 +35,9 @@ class Entity
     if @cBox\overlaps other
       if @collision
         @collision other, lvl
+
+  addTimer: (t) =>
+    @timer = t
 
   dead: () =>
     @dead = true

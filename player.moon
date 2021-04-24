@@ -9,6 +9,7 @@ Graphics = love.graphics
 class Player
 
   new: (x, y, w, h, mouvement) =>
+    @name = "player"
     @x = x
     @y = y
     @w = w
