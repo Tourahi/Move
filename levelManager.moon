@@ -1,6 +1,7 @@
 import min from math
 import max from math
 import insert from table
+import remove from table
 Entity = assert require "entity"
 Box = assert require "box"
 Missle = assert require "actions.missle"
@@ -14,8 +15,7 @@ class LevelManager
     @entities = {}
     @currentLevel = 1
     @initObjects!
-    testEnt = Missle.create 100,100,100
-    insert @entities, testEnt
+    insert @entities, Missle.create 100,100,100
 
   draw: () =>
     Push\apply 'start'
@@ -39,7 +39,9 @@ class LevelManager
   update: (dt) =>
     @player\update dt, self
     for _,ent in pairs @entities
-      continue if ent.dead
+      if ent.dead
+        @entities[_] = nil
+        break
       ent\collisionCheck @player, self
       for _,oent in pairs @entities
         ent\collisionCheck oent, self

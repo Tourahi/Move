@@ -32,10 +32,10 @@ class Entity
     ocBox = other.cBox
     if self == other
       return
-    B\watch "isColiDetected",-> @cBox\overlaps ocBox
     if @cBox\overlaps other
       if @collision
         @collision other, lvl
+    @cBox\overlaps other
 
   addTimer: (t) =>
     @timer = t

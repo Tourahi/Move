@@ -7,7 +7,8 @@ Missle = {}
 collision = (other, game) =>
   ocbox = other.cBox
   if other.name == "player"
-    print "Hit"
+    @Dead!
+    print @name .. " is dead"
 
 with Missle
 
