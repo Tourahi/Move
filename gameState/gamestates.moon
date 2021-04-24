@@ -1,6 +1,6 @@
 
 gameStates = {}
-gameStatesPath = "./gameStates/"
+gameStatesPath = "./gameState/"
 loaded = {}
 current_state = nil
 
@@ -17,7 +17,7 @@ gameStates.stateEvent = (fname, ...) ->
 gameStates.setState = (sname, ...) ->
   gameStates.stateEvent 'exit'
   oldSname = getKeyOfValue loaded, current_state
-  current_state = loaded sname
+  current_state = loaded[sname]
   if not current_state
     current_state = assert require gameStatesPath..sname
     loaded[sname] = current_state
