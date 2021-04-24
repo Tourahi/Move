@@ -3,3 +3,4 @@
 moonc .
 love .
 rm *.lua
+rm gameState/*.lua
