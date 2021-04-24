@@ -29,9 +29,10 @@ class Entity
       @cBox\update @x,@y
 
   collisionCheck: (other, lvl) =>
+    ocBox = other.cBox
     if self == other
       return
-    B\watch "isColiDetected",-> @cBox\overlaps other
+    B\watch "isColiDetected",-> @cBox\overlaps ocBox
     if @cBox\overlaps other
       if @collision
         @collision other, lvl
@@ -39,5 +40,5 @@ class Entity
   addTimer: (t) =>
     @timer = t
 
-  dead: () =>
+  Dead: () =>
     @dead = true

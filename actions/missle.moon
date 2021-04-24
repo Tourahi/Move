@@ -4,18 +4,18 @@ Box = assert require "box"
 Missle = {}
 
 
+collision = (other, game) =>
+  ocbox = other.cBox
+  if other.name == "player"
+    print "Hit"
 
 with Missle
 
   .create = (x,y,speed) ->
     missle = Entity "missle", nil, x, y,
-            speed, @collision, nil,Box 120, 120, 10, 10
+            speed, collision, nil,Box 10, 10, 10, 10
 
     missle
-
-  .collision = (ent, game) =>
-    if ent.name == 'player'
-      print "Missle hit player"
 
 
 Missle

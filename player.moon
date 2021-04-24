@@ -17,7 +17,7 @@ class Player
     @drawType = "line"
     @speed = 90
     @mouvement = mouvement
-    @mouvement\setCtrls 'up','down','left','right'
+    @mouvement\setCtrls 'z','s','q','d'
     @dx = 0
     @dy = 0
     @sprite = Graphics.newImage("sprites/player.png")
