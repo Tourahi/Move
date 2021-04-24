@@ -28,6 +28,7 @@ export DEBUG = false
 with love
   .load = () ->
     B!
+    B\setPosition 20,1
     B\watch "FPS",-> love.timer.getFPS!
     B\watch "NumOfObject",-> #tileM.objects
     love.window.setTitle "Move"
@@ -44,3 +45,9 @@ with love
 
   .resize = (w,h) ->
     lvlM\resize(w, h)
+
+  .keypressed = (key) =>
+    B\keypressed key
+    if key == 'escape'
+      love.event.quit!
+
