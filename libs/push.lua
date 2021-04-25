@@ -132,7 +132,7 @@ function push:initValues()
 end
 
 function push:apply(operation, shader)
-	self._drawFunctions[operation](self, shader)
+  self._drawFunctions[operation](self, shader)
 end
 
 function push:start()

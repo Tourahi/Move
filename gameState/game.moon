@@ -1,7 +1,7 @@
 game = {}
 
-export WINDOW_WIDTH = 640
-export WINDOW_HEIGHT = 360
+export WINDOW_WIDTH = 1280
+export WINDOW_HEIGHT = 720
 
 export VIRTUAL_WIDTH = 432
 export VIRTUAL_HEIGHT = 243
@@ -17,7 +17,8 @@ export B = assert require "libs.Binocles"
 winOptions = {
 	fullscreen: false,
 	resizable: true,
-	vsync: false
+	vsync: true,
+  canvas: false
 }
 
 
@@ -30,7 +31,7 @@ with game
 
   .load = () ->
     B!
-    B\setPosition 20,1
+    B\setPosition 40,2
     B\watch "FPS",-> love.timer.getFPS!
     love.window.setTitle "Move"
     love.graphics.setDefaultFilter 'nearest', 'nearest'

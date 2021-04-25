@@ -18,12 +18,12 @@ class LevelManager
     insert @entities, Missle.create 100,100,110
 
   draw: () =>
-    Push\apply 'start'
+    Push\start!
     @tileM\draw!
     for _,ent in pairs @entities
       ent\draw!
     @player\draw!
-    Push\apply 'end'
+    Push\finish!
 
   addEntity: (ent) =>
     insert @entities, ent
