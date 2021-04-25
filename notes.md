@@ -1,0 +1,1 @@
+* Perhaps every sub-entity should have an updated function that get called in the Entity class Update function as a call back to which you send the diff between the old position and the new one.

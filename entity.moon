@@ -22,11 +22,16 @@ class Entity
     if @cBox
       Graphics.rectangle 'line', @cBox.x, @cBox.y, @cBox.w, @cBox.h
 
-  update: (dt) =>
+  update: (dt, lvl) =>
     if @mouvement
-      @x,@y = @mouvement.update self, dt
+      newPos = @mouvement.update self, lvl, dt
+      @x += newPos.x
+      @y += newPos.y
     if @cBox
       @cBox\update @x,@y
+
+  getPos: () =>
+    {x:@x,y:@y}
 
   collisionCheck: (other, lvl) =>
     ocBox = other.cBox

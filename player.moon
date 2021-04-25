@@ -35,6 +35,10 @@ class Player
   setPos: (x,y) =>
     @x,@y = x,y
 
+  getPos: () =>
+    {x:@x,y:@y}
+
+
   update: (dt, lvl) =>
     x,y = @mouvement.update self, dt
     B\watch "Player Pos",-> {x: floor(@x),y: floor(@y)}

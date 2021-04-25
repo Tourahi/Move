@@ -45,7 +45,7 @@ class LevelManager
       ent\collisionCheck @player, self
       for _,oent in pairs @entities
         ent\collisionCheck oent, self
-      ent\update dt
+      ent\update dt, self
 
 
   isTileWalkable: (x, y) =>

@@ -1,5 +1,6 @@
 Entity = assert require "entity"
 Box = assert require "box"
+followPlayer = assert require "ai.follow_player"
 
 Missle = {}
 
@@ -14,7 +15,8 @@ with Missle
 
   .create = (x,y,speed) ->
     missle = Entity "missle", nil, x, y,
-            speed, collision, nil,Box 10, 10, 10, 10
+            10, collision,followPlayer,
+            Box 10, 10, 10, 10
 
     missle
 

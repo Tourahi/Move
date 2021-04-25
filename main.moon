@@ -1,8 +1,5 @@
 gameS = assert require "gameState.gamestates"
 
-
-
-
 with love
   .load = (arg) ->
     gameS.setState "game"
