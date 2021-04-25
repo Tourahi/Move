@@ -40,7 +40,9 @@ class Player
 
 
   update: (dt, lvl) =>
-    x,y = @mouvement.update self, dt
+    x,y = @x,@y
+    if @mouvement
+      x,y = @mouvement.update self, dt
     B\watch "Player Pos",-> {x: floor(@x),y: floor(@y)}
     B\watch "Player Dir",-> {dx: @dx,dy: @dy}
     if lvl\isTileWalkable x + (@h/2 + (@dx*@h/3)),y + (@w/2 + (@dy*@w/3))

@@ -15,7 +15,7 @@ class LevelManager
     @entities = {}
     @currentLevel = 1
     @initObjects!
-    insert @entities, Missle.create 100,100,100
+    insert @entities, Missle.create 100,100,110
 
   draw: () =>
     Push\apply 'start'

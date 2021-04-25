@@ -7,16 +7,22 @@ Missle = {}
 
 collision = (other, game) =>
   ocbox = other.cBox
-  if other.name == "player"
+  if other == game.player
     @Dead!
-    print @name .. " is dead"
+    print other.name .. " is dead"
+    other.mouvement = nil
 
+update = (difx, dify) =>
+    @x += difx
+    @y += dify
 with Missle
 
   .create = (x,y,speed) ->
     missle = Entity "missle", nil, x, y,
-            10, collision,followPlayer,
+            speed, collision,followPlayer, update,
             Box 10, 10, 10, 10
+
+
 
     missle
 

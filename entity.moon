@@ -1,7 +1,7 @@
 Graphics = love.graphics
 
 class Entity
-  new: (name, sprite, x, y, speed, collision, mouvement, cBox) =>
+  new: (name, sprite, x, y, speed, collision, mouvement, sUpdate, cBox) =>
     @name = name
     @cBox = cBox
     @x = x
@@ -16,17 +16,18 @@ class Entity
     @visible = true
     @dead = false
     @timer = nil
+    @sUpdate = sUpdate
 
 
   draw: () =>
     if @cBox
-      Graphics.rectangle 'line', @cBox.x, @cBox.y, @cBox.w, @cBox.h
+      Graphics.rectangle 'fill', @cBox.x, @cBox.y, @cBox.w, @cBox.h
 
   update: (dt, lvl) =>
     if @mouvement
       newPos = @mouvement.update self, lvl, dt
-      @x += newPos.x
-      @y += newPos.y
+      if @sUpdate
+        @sUpdate newPos.x, newPos.y
     if @cBox
       @cBox\update @x,@y
 
