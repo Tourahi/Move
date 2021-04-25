@@ -2,29 +2,30 @@ Entity = assert require "entity"
 Box = assert require "box"
 followPlayer = assert require "ai.follow_player"
 
-Missle = {}
+Petard = {}
 
 
 collision = (other, game) =>
   ocbox = other.cBox
   if other == game.player
     @Dead!
-    print other.name .. " is dead"
-    other.mouvement = nil
+    print other.name .. " got Hit by " .. @name
+    -- other.mouvement = nil
 
-update = (difx, dify) =>
-    @x += difx
-    @y += dify
-with Missle
+update = (diffx, diffy) =>
+    @x += diffx
+    @y += diffy
+
+with Petard
 
   .create = (x,y,speed) ->
-    missle = Entity "missle", nil, x, y,
+    petard = Entity "petard", nil, x, y,
             speed, collision,followPlayer, update,
             Box 10, 10, 10, 10
 
 
 
-    missle
+    petard
 
 
-Missle
+Petard

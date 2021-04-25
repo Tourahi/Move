@@ -8,7 +8,6 @@ with followPlayer
     entPos = entity\getPos!
     dX = 0
     dY = 0
-    tm = game.tileM
     dist = vector.distance entPos, playerPos
 
     if dist < 100

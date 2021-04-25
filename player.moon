@@ -29,7 +29,7 @@ class Player
 
 
   draw: () =>
-    Graphics.rectangle @drawType, @cBox.x, @cBox.y, @cBox.w, @cBox.h
+    -- Graphics.rectangle @drawType, @cBox.x, @cBox.y, @cBox.w, @cBox.h
     Graphics.draw @sprite, @x, @y, nil, nil, nil, 0, 0
 
   setPos: (x,y) =>

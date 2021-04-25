@@ -1,26 +1,12 @@
 game = {}
 
-export WINDOW_WIDTH = 1280
-export WINDOW_HEIGHT = 720
-
-export VIRTUAL_WIDTH = 432
-export VIRTUAL_HEIGHT = 243
-
-Player = assert require "player"
 export Push = assert require "libs.push"
+Player = assert require "player"
 tileManager = assert require "libs.tilemanager"
 levelManager = assert require "levelManager"
 gameStates = assert require "gameState.gamestates"
 export playerMv = assert require "ai.playerKeyboardMv"
 export B = assert require "libs.Binocles"
-
-winOptions = {
-	fullscreen: false,
-	resizable: true,
-	vsync: true,
-  canvas: false
-}
-
 
 with game
 
@@ -35,7 +21,7 @@ with game
     B\watch "FPS",-> love.timer.getFPS!
     love.window.setTitle "Move"
     love.graphics.setDefaultFilter 'nearest', 'nearest'
-    Push\setupScreen VIRTUAL_WIDTH, VIRTUAL_HEIGHT,WINDOW_WIDTH, WINDOW_HEIGHT, winOptions
+    Push\setupScreen VIRTUAL_WIDTH, VIRTUAL_HEIGHT,WINDOW_WIDTH, WINDOW_HEIGHT, WinOptions
 
   .update = (dt) ->
     game.lvlM\update dt
@@ -55,7 +41,5 @@ with game
 
   .exit = () ->
     return
-
-
 
 game

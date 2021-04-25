@@ -4,7 +4,7 @@ import insert from table
 import remove from table
 Entity = assert require "entity"
 Box = assert require "box"
-Missle = assert require "actions.missle"
+Petard = assert require "mobs.petard"
 
 class LevelManager
   new: (tm, p, lvlsPath) =>
@@ -15,7 +15,9 @@ class LevelManager
     @entities = {}
     @currentLevel = 1
     @initObjects!
-    insert @entities, Missle.create 100,100,110
+    insert @entities, Petard.create 100,101,40
+    insert @entities, Petard.create 110,102,40
+    insert @entities, Petard.create 120,103,40
 
   draw: () =>
     Push\start!
@@ -35,6 +37,7 @@ class LevelManager
       @objects[o.name] = o
     @player\setPos @objects["player"].x, @objects["player"].y
     B\watch "NumOfTiledObjects",-> #@tileM.objects
+    B\watch "NumOfEntities",-> #@entities
 
   update: (dt) =>
     @player\update dt, self
