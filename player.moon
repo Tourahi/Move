@@ -21,15 +21,15 @@ class Player
     @dx = 0
     @dy = 0
     @sprite = Graphics.newImage("sprites/player.png")
-    @rBound = VIRTUAL_WIDTH + @w
-    @lBound = -@w
-    @tBound = -@h
-    @bBound = VIRTUAL_HEIGHT + @h
+    @rBound = VIRTUAL_WIDTH - @w
+    @lBound = 0
+    @tBound = 0
+    @bBound = VIRTUAL_HEIGHT - @h
     @cBox = Box @x, @y, @w, @h
 
 
   draw: () =>
-    -- Graphics.rectangle @drawType, @cBox.x, @cBox.y, @cBox.w, @cBox.h
+    Graphics.rectangle @drawType, @cBox.x, @cBox.y, @cBox.w, @cBox.h
     Graphics.draw @sprite, @x, @y, nil, nil, nil, 0, 0
 
   setPos: (x,y) =>
@@ -45,7 +45,10 @@ class Player
       x,y = @mouvement.update self, dt
     B\watch "Player Pos",-> {x: floor(@x),y: floor(@y)}
     B\watch "Player Dir",-> {dx: @dx,dy: @dy}
-    if lvl\isTileWalkable x + (@h/2 + (@dx*@h/3)),y + (@w/2 + (@dy*@w/3))
+    B\watch "Player Pos",-> {x: floor(@x),y: floor(@y)}
+    B\watch "@tBound",-> @tBound
+    B\watch "@bBound",-> @bBound
+    if lvl\isTileWalkable x + (@h/2 + (@dx*floor @h/5)),y + (@w/2 + (@dy*floor @w/5))
       @x = x
       @y = y
       if @dx != 0

@@ -20,11 +20,9 @@ with Petard
 
   .create = (x,y,speed) ->
     petard = Entity "petard", nil, x, y,
-            speed, collision,followPlayer, update,
+            120, collision,followPlayer, update,
             Box 10, 10, 10, 10
-
-
-
+    -- petard.startFollowDist = 40
     petard
 
 

@@ -35,7 +35,6 @@ class Entity
     {x:@x,y:@y}
 
   collisionCheck: (other, lvl) =>
-    ocBox = other.cBox
     if self == other
       return
     if @cBox\overlaps other

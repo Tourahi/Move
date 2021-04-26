@@ -43,13 +43,13 @@ with playerkeyboardMv
     mouvementDir entity, playerkeyboardMv\getCtrls!
     x,y = entity.x, entity.y
     if entity.dy < 0
-      y = max entity.h*entity.dy, entity.y + (entity.dy * entity.speed * dt)
+      y = max entity.h*entity.dy + 10, entity.y + (entity.dy * entity.speed * dt)
     elseif entity.dy > 0
-      y = min VIRTUAL_HEIGHT + entity.h,  entity.y + (entity.dy * entity.speed * dt)
+      y = min VIRTUAL_HEIGHT - entity.h,  entity.y + (entity.dy * entity.speed * dt)
     elseif entity.dx < 0
-      x = max entity.w*entity.dx, entity.x + (entity.dx * entity.speed * dt)
+      x = max entity.w*entity.dx + 10, entity.x + (entity.dx * entity.speed * dt)
     elseif entity.dx > 0
-      x = min VIRTUAL_WIDTH + entity.w, entity.x + (entity.dx * entity.speed * dt)
+      x = min VIRTUAL_WIDTH - entity.w, entity.x + (entity.dx * entity.speed * dt)
     x,y
 
   .setCtrls = (u, d, l, r, s) =>

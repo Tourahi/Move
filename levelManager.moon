@@ -12,19 +12,18 @@ class LevelManager
     @player = p
     @objects = {}
     @lvlsPath = lvlsPath
-    @entities = {}
+    @entities = { @player }
     @currentLevel = 1
     @initObjects!
-    insert @entities, Petard.create 100,101,40
-    insert @entities, Petard.create 110,102,40
-    insert @entities, Petard.create 120,103,40
+    insert @entities, Petard.create 100,100,40
+    insert @entities, Petard.create 120,110,40
+    insert @entities, Petard.create 140,120,40
 
   draw: () =>
     Push\start!
     @tileM\draw!
     for _,ent in pairs @entities
       ent\draw!
-    @player\draw!
     Push\finish!
 
   addEntity: (ent) =>
@@ -39,16 +38,18 @@ class LevelManager
     B\watch "NumOfTiledObjects",-> #@tileM.objects
     B\watch "NumOfEntities",-> #@entities
 
-  update: (dt) =>
-    @player\update dt, self
+  updateEntities: (dt) =>
     for _,ent in pairs @entities
       if ent.dead
         @entities[_] = nil
         break
-      ent\collisionCheck @player, self
       for _,oent in pairs @entities
-        ent\collisionCheck oent, self
+        if ent.collisionCheck
+          ent\collisionCheck oent, self
       ent\update dt, self
+
+  update: (dt) =>
+    @updateEntities dt
 
 
   isTileWalkable: (x, y) =>

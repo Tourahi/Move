@@ -9,8 +9,9 @@ with followPlayer
     dX = 0
     dY = 0
     dist = vector.distance entPos, playerPos
-
-    if dist < 100
+    if not entity.startFollowDist
+      entity.startFollowDist = 40
+    if dist < entity.startFollowDist
       Uvec = vector.normalise entPos, playerPos
       dX = Uvec.dx * entity.speed * dt
       dY = Uvec.dy * entity.speed * dt
