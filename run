@@ -7,3 +7,4 @@ rm gameState/*.lua
 rm ai/*.lua
 rm mobs/*.lua
 rm tools/*.lua
+rm graphics/*.lua
