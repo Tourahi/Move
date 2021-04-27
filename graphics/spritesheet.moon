@@ -10,24 +10,9 @@ class Spritesheet
     @spriteWide = @image\getWidth! / spriteSize
     @spriteSize = spriteSize
     @initSprites!
-    @states = animStates or {
-      "idle": {start:1, stop:1},
-      "left": {start:1, stop:1},
-      "right": {start:1, stop:1},
-      "top": {start:1, stop:1},
-      "bot": {start:1, stop:1},
-      "move": {start:1, stop:1}
-    }
-    @animation = Animation(ftime)
-    @updateState "idle"
+    @animation = Animation ftime, animStates
     @xOffset = @spriteSize / 2
     @yOffset = @spriteSize / 2
-
-  updateState: (newS) =>
-    if @states[newS] == nil
-      newS = "idle"
-    @state = @states[newS]
-    @animation\updateState @state
 
   initSprites: () =>
     for i = 1, @spriteWide

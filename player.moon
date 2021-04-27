@@ -11,7 +11,7 @@ Graphics = love.graphics
 animStates = {
   "idle": {start:1, stop:1},
   "right": {start:1, stop:2},
-  "left": {start:3, stop:4},
+  "left": {start:3, stop:4}
 }
 
 class Player
