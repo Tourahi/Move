@@ -12,6 +12,7 @@ with love
 
   .keypressed = (key) ->
     gameS.stateEvent "keypressed", key
+
   .resize = (w,h) ->
     gameS.stateEvent "resize", w, h
 

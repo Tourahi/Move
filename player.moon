@@ -4,6 +4,7 @@ import floor from math
 import abs from math
 
 Box = assert require "box"
+spriteSheet = assert require "graphics.spritesheet"
 Graphics = love.graphics
 
 class Player
@@ -20,7 +21,7 @@ class Player
     @mouvement\setCtrls 'z','s','q','d'
     @dx = 0
     @dy = 0
-    @sprite = Graphics.newImage("sprites/player.png")
+    @spriteSheet = spriteSheet("sprites/player-Sheet.png",10 ,30)
     @rBound = VIRTUAL_WIDTH - @w
     @lBound = 0
     @tBound = 0
@@ -29,8 +30,8 @@ class Player
 
 
   draw: () =>
-    -- Graphics.rectangle @drawType, @cBox.x, @cBox.y, @cBox.w, @cBox.h
-    Graphics.draw @sprite, @x, @y, nil, nil, nil, 0, 0
+		-- Graphics.rectangle @drawType, @cBox.x, @cBox.y, @cBox.w, @cBox.h
+		@spriteSheet\draw @x,@y
 
   setPos: (x,y) =>
     @x,@y = x,y
@@ -57,5 +58,6 @@ class Player
         elseif @dy < 0 and @y == @tBound
           @y = @bBound
     @cBox\update @x, @y
+    @spriteSheet\update dt, lvl
 
 
