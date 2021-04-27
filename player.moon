@@ -7,6 +7,13 @@ Box = assert require "box"
 spriteSheet = assert require "graphics.spritesheet"
 Graphics = love.graphics
 
+
+animStates = {
+  "idle": {start:1, stop:1},
+  "right": {start:1, stop:2},
+  "left": {start:3, stop:4},
+}
+
 class Player
 
   new: (x, y, w, h, mouvement) =>
@@ -21,7 +28,7 @@ class Player
     @mouvement\setCtrls 'z','s','q','d'
     @dx = 0
     @dy = 0
-    @spriteSheet = spriteSheet("sprites/player-Sheet.png",10 ,30)
+    @spriteSheet = spriteSheet("sprites/player-Sheet.png",10 ,30, animStates)
     @rBound = VIRTUAL_WIDTH - @w
     @lBound = 0
     @tBound = 0

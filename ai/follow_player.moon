@@ -15,7 +15,6 @@ with followPlayer
       Uvec = vector.normalise entPos, playerPos
       dX = Uvec.dx * entity.speed * dt
       dY = Uvec.dy * entity.speed * dt
-
     {x:dX,y:dY}
 
 followPlayer

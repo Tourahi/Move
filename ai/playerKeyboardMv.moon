@@ -13,18 +13,23 @@ mouvementDir = (entity, ctrls) ->
   if Keyboard.isDown ctrls.up
     entity.dy = -1
     entity.dx = 0
+    entity.spriteSheet\updateState "up"
   else if Keyboard.isDown ctrls.down
     entity.dy = 1
     entity.dx = 0
+    entity.spriteSheet\updateState "down"
   else if Keyboard.isDown ctrls.right
     entity.dx = 1
     entity.dy = 0
+    entity.spriteSheet\updateState "right"
   else if Keyboard.isDown ctrls.left
     entity.dx = -1
     entity.dy = 0
+    entity.spriteSheet\updateState "left"
   else if Keyboard.isDown ctrls.stop
     entity.dx = 0
     entity.dy = 0
+    entity.spriteSheet\updateState "idle"
 
 with playerkeyboardMv
   .controls =  {
