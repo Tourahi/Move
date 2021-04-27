@@ -1,19 +1,16 @@
 game = {}
 
 export Push = assert require "libs.push"
-Player = assert require "player"
 tileManager = assert require "libs.tilemanager"
 levelManager = assert require "levelManager"
 gameStates = assert require "gameState.gamestates"
-export playerMv = assert require "ai.playerKeyboardMv"
 export B = assert require "libs.Binocles"
 
 with game
 
   .enter = (prevS, ...) ->
-    player = Player(10,10,10,10,playerMv)
     tileM = tileManager "maps.level1"
-    game.lvlM = levelManager tileM, player, "maps"
+    game.lvlM = levelManager tileM, "maps"
 
   .load = () ->
     B!

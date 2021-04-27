@@ -6,7 +6,7 @@ import abs from math
 Box = assert require "box"
 spriteSheet = assert require "graphics.spritesheet"
 Graphics = love.graphics
-
+playerMv = assert require "ai.playerKeyboardMv"
 
 animStates = {
   "idle": {start:1, stop:1},
@@ -14,17 +14,20 @@ animStates = {
   "left": {start:3, stop:4}
 }
 
+COLIBOX_WIDTH = 10
+COLIBOX_HEIGHT = 10
+
 class Player
 
-  new: (x, y, w, h, mouvement) =>
+  new: (x, y) =>
     @name = "player"
     @x = x
     @y = y
-    @w = w
-    @h = h
+    @w = COLIBOX_WIDTH
+    @h = COLIBOX_HEIGHT
     @drawType = "line"
     @speed = 90
-    @mouvement = mouvement
+    @mouvement = playerMv
     @mouvement\setCtrls 'z','s','q','d'
     @dx = 0
     @dy = 0
@@ -37,7 +40,7 @@ class Player
 
 
   draw: () =>
-		-- Graphics.rectangle @drawType, @cBox.x, @cBox.y, @cBox.w, @cBox.h
+		Graphics.rectangle @drawType, @cBox.x, @cBox.y, @cBox.w, @cBox.h
 		@spriteSheet\draw @x,@y
 
   setPos: (x,y) =>

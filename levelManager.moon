@@ -5,19 +5,17 @@ import remove from table
 Entity = assert require "entity"
 Box = assert require "box"
 Petard = assert require "mobs.petard"
+Spawner = assert require "spawner"
 
 class LevelManager
-  new: (tm, p, lvlsPath) =>
+  new: (tm, lvlsPath) =>
     @tileM = tm
-    @player = p
+    @player = {}
     @objects = {}
     @lvlsPath = lvlsPath
-    @entities = { @player }
+    @entities = {}
     @currentLevel = 1
-    @initObjects!
-    insert @entities, Petard.create 100,100,40
-    insert @entities, Petard.create 120,110,40
-    insert @entities, Petard.create 140,120,40
+    Spawner.spawn self, @tileM.objects
 
   draw: () =>
     Push\start!
@@ -28,15 +26,6 @@ class LevelManager
 
   addEntity: (ent) =>
     insert @entities, ent
-
-
-  initObjects: () =>
-    objs = @tileM.objects
-    for k,o in pairs objs
-      @objects[o.name] = o
-    @player\setPos @objects["player"].x, @objects["player"].y
-    B\watch "NumOfTiledObjects",-> #@tileM.objects
-    B\watch "NumOfEntities",-> #@entities
 
   updateEntities: (dt) =>
     for _,ent in pairs @entities
