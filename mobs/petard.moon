@@ -4,7 +4,7 @@ followPlayer = assert require "ai.follow_player"
 
 Petard = {}
 
-SPEED = 100
+SPEED = 300
 
 collision = (other, game) =>
   ocbox = other.cBox
@@ -22,7 +22,7 @@ with Petard
   .create = (x,y) ->
     petard = Entity "petard", nil, x, y,
             SPEED, collision,followPlayer, update,
-            Box 10, 10, 10, 10
+            Box 10, 10, 1, 1
     petard.startFollowDist = 120
     petard
 
